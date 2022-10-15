@@ -12,7 +12,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     private int price = 5;
-    private int qty = 1;
+    private int qty = 0;
 
 
     @Override
@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        display(1);
-        displayPrice(2 * price);
+
     }
 
     private void display(int number) {
@@ -34,10 +33,15 @@ public class MainActivity extends AppCompatActivity {
     public void increment(View view) {
         qty = qty + 1;
         display(qty);
+        displayPrice(qty * price);
     }
 
     public void decrement(View view) {
-
+        if ((qty - 1) >= 1) {
+            qty = qty - 1;
+            display(qty);
+            displayPrice(qty * price);
+        }
     }
 
     private void displayPrice(int number) {
