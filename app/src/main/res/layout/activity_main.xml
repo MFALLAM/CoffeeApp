@@ -20,11 +20,11 @@
         android:id="@+id/btn_increment"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#BEBEBE"
         android:onClick="increment"
         android:text="+"
         android:textSize="16dp"
-        android:layout_marginBottom="16dp"
         android:textStyle="bold" />
 
     <TextView
@@ -33,21 +33,21 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/text_qty"
         android:layout_marginBottom="16dp"
-        android:text="0"
+        android:text="1"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold" />
 
-    
+
     <Button
         android:id="@+id/btn_decrement"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#BEBEBE"
         android:onClick="decrement"
         android:text="-"
         android:textSize="16dp"
-        android:layout_marginBottom="16dp"
         android:textStyle="bold" />
 
     <TextView

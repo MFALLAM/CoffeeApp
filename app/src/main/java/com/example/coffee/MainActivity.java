@@ -2,6 +2,7 @@ package com.example.coffee;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +12,8 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     private int price = 5;
-    private int count = 0;
+    private int qty = 1;
 
-    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,12 @@ public class MainActivity extends AppCompatActivity {
         txtView.setText("" + number);
     }
 
-    private void increment(View view, int count) {
-
+    public void increment(View view) {
+        qty = qty + 1;
+        display(qty);
     }
 
-    private void decrement(int count) {
+    public void decrement(View view) {
 
     }
 
@@ -43,4 +44,5 @@ public class MainActivity extends AppCompatActivity {
         TextView txtView = findViewById(R.id.text_total_price);
         txtView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+
 }
