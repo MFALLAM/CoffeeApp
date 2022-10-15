@@ -16,8 +16,19 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btn_increment"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#BEBEBE"
+        android:onClick="increment"
+        android:text="+"
+        android:textSize="16dp"
+        android:layout_marginBottom="16dp"
+        android:textStyle="bold" />
+
     <TextView
-        android:id="@+id/text_total"
+        android:id="@+id/text_total_qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/text_qty"
@@ -29,12 +40,44 @@
 
     
     <Button
+        android:id="@+id/btn_decrement"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#BEBEBE"
+        android:onClick="decrement"
+        android:text="-"
+        android:textSize="16dp"
+        android:layout_marginBottom="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="PRICE"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/txt_price"
+        android:layout_marginBottom="16dp"
+        android:text="$0.00"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
         android:id="@+id/btn_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#BEBEBE"
+        android:onClick="submitOrder"
+        android:text="Order"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:text="Order" />
+        android:textStyle="bold" />
 </LinearLayout>
