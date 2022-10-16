@@ -16,39 +16,48 @@
         android:textSize="16dp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btn_increment"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#BEBEBE"
-        android:onClick="increment"
-        android:text="+"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/text_total_qty"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/text_qty"
-        android:layout_marginBottom="16dp"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_increment"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#BEBEBE"
+            android:onClick="increment"
+            android:text="+"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_total_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/text_qty"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
 
-    <Button
-        android:id="@+id/btn_decrement"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#BEBEBE"
-        android:onClick="decrement"
-        android:text="-"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btn_decrement"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#BEBEBE"
+            android:onClick="decrement"
+            android:text="-"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txt_price"
