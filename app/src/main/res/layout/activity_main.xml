@@ -22,14 +22,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_increment"
+            android:id="@+id/btn_decrement"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#BEBEBE"
-            android:onClick="increment"
-            android:text="+"
+            android:onClick="decrement"
+            android:text="-"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -45,15 +45,14 @@
             android:textSize="16dp"
             android:textStyle="bold" />
 
-
         <Button
-            android:id="@+id/btn_decrement"
+            android:id="@+id/btn_increment"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#BEBEBE"
-            android:onClick="decrement"
-            android:text="-"
+            android:onClick="increment"
+            android:text="+"
             android:textSize="16dp"
             android:textStyle="bold" />
 
