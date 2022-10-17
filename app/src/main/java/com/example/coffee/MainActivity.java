@@ -10,119 +10,97 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
 
+/**
+ * This app displays an order form to order coffee.
+ */
 public class MainActivity extends AppCompatActivity {
-    final int COFFEE_PRICE = 5;
-    int quantity = 0;
-    int orderPrice;
-    public TextView priceTextView;
-    public TextView quantityTextView;
-    public TextView orderSummaryTextView;
-    public CheckBox whippedCheckBox;
-    private ArrayList<String> toppingsList = new ArrayList<>();
+
+    int quantity = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializer();
     }
 
     /**
-     * This method finds view's by id and set it the views
+     * This method is called when the plus button is clicked.
      */
-    private void initializer() {
-        quantityTextView = findViewById(R.id.text_total_qty);
-        priceTextView = findViewById(R.id.txt_price);
-        orderSummaryTextView = findViewById(R.id.order_summary_tv);
-        whippedCheckBox = findViewById(R.id.checkbox_whipped_cream);
-    }
-
-    private String addedTopping() {
-        if (whippedCheckBox.isChecked()) {
-            Log.v("MainActivity", "Has as Whipped Cream: " + whippedCheckBox.isChecked());
-            return "\nAdded whipped Cream: " + whippedCheckBox.isChecked();
-        }
-        return null;
+    public void increment(View view) {
+        quantity = quantity + 1;
+        displayQuantity(quantity);
     }
 
     /**
-     * @param view
+     * This method is called when the minus button is clicked.
+     */
+    public void decrement(View view) {
+        quantity = quantity - 1;
+        displayQuantity(quantity);
+    }
+
+    /**
+     * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String message = createOrderSummary();
-        orderSummaryTextView.setText(message);
+        // Figure out if the user wants whipped cream topping
+        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
+        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+
+        // Figure out if the user wants chocolate topping
+        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolate = chocolateCheckBox.isChecked();
+
+        // Calculate the price
+        int price = calculatePrice();
+
+        // Display the order summary on the screen
+        String message = createOrderSummary(price, hasWhippedCream, hasChocolate);
+        displayMessage(message);
+    }
+
+    /**
+     * Calculates the price of the order.
+     *
+     * @return total price
+     */
+    private int calculatePrice() {
+        return quantity * 5;
     }
 
     /**
      * Create summary of the order.
+     *
+     * @param price           of the order
+     * @param addWhippedCream is whether or not to add whipped cream to the coffee
+     * @return text summary
      */
-    private String createOrderSummary() {
-        String priceMessage = "";
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
+        String priceMessage = "Name: Lyla the Labyrinth";
+        priceMessage += "\nAdd whipped cream? " + addWhippedCream;
+        priceMessage += "\nAdd chocolate? " + addChocolate;
         priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal: $" + orderPrice;
-        priceMessage += addedTopping() != null ? addedTopping() : "";
+        priceMessage += "\nTotal: $" + price;
         priceMessage += "\nThank you!";
         return priceMessage;
     }
 
     /**
-     * This method displays the given quantity on the screen
-     *
-     * @param numberOfCoffees
+     * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int numberOfCoffees) {
-        TextView txtView = findViewById(R.id.text_total_qty);
-        txtView.setText("" + numberOfCoffees);
-    }
-
-
-    /**
-     * This method is called when the + button is clicked and its increase the quantity by 1 and updating the total price order
-     */
-    public void increment(View view) {
-        if (quantity == 100) {
-            Toast.makeText(this, R.string.validation_increase, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        quantity = quantity + 1;
-        setQuantity(quantity);
-        calculateTotalPrice();
-        displayPrice(orderPrice);
+        TextView quantityTextView = (TextView) findViewById(
+                R.id.text_total_qty);
+        quantityTextView.setText("" + numberOfCoffees);
     }
 
     /**
-     * This method is called when the - button is clicked and its decrease the quantity by 1 and updating the total price order
+     * This method displays the given text on the screen.
      */
-    public void decrement(View view) {
-        if (quantity == 1) {
-            Toast.makeText(this, R.string.validation_decrease, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        quantity = quantity - 1;
-        setQuantity(quantity);
-        calculateTotalPrice();
-        displayPrice(orderPrice);
+    private void displayMessage(String message) {
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_tv);
+        orderSummaryTextView.setText(message);
     }
 
-    private void setQuantity(int newQuantity) {
-        Log.v("MainActivity", "newQuantity: ");
-        quantityTextView.setText("" + newQuantity);
-    }
-
-    private void calculateTotalPrice() {
-        int total = 0;
-        orderPrice = quantity * (total + COFFEE_PRICE);
-        Log.v("MainActivity", "calculateTotalPrice -> new price: ");
-    }
-
-    /**
-     * This method displays the given price on the screen.
-     */
-    private void displayPrice(int number) {
-        Log.v("MainActivity", "number: ");
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
 }
