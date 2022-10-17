@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     int orderPrice;
     public TextView priceTextView;
     public TextView quantityTextView;
+    public TextView orderSummaryTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private void initializer() {
         quantityTextView = findViewById(R.id.text_total_qty);
         priceTextView = findViewById(R.id.txt_price);
+        orderSummaryTextView = findViewById(R.id.order_summary_tv);
     }
 
     public void submitOrder(View view) {
         String message = createOrderSummary();
+        orderSummaryTextView.setText(message);
     }
 
     /**
