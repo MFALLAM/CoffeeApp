@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     final int COFFEE_PRICE = 5;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView quantityTextView;
     public TextView orderSummaryTextView;
     public CheckBox whippedCheckBox;
+    private ArrayList<String> toppingsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
         whippedCheckBox = findViewById(R.id.checkbox_whipped_cream);
     }
 
+    private String addedTopping() {
+        if (whippedCheckBox.isChecked()) {
+            return "\nAdded whipped Cream: " + whippedCheckBox.isChecked();
+        }
+        return null;
+    }
+
     /**
-     *
      * @param view
      */
     public void submitOrder(View view) {
@@ -54,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         String priceMessage = "";
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + orderPrice;
+        priceMessage += addedTopping() != null ? addedTopping() : "";
         priceMessage += "\nThank you!";
         return priceMessage;
     }
