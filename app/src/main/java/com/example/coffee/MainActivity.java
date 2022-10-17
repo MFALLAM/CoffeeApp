@@ -26,12 +26,19 @@ public class MainActivity extends AppCompatActivity {
         initializer();
     }
 
+    /**
+     * This method finds view's by id and set it the views
+     */
     private void initializer() {
         quantityTextView = findViewById(R.id.text_total_qty);
         priceTextView = findViewById(R.id.txt_price);
         orderSummaryTextView = findViewById(R.id.order_summary_tv);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void submitOrder(View view) {
         String message = createOrderSummary();
         orderSummaryTextView.setText(message);
