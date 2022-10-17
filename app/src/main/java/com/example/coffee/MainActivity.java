@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String addedTopping() {
         if (whippedCheckBox.isChecked()) {
+            Log.v("MainActivity", "Has as Whipped Cream: " + whippedCheckBox.isChecked());
             return "\nAdded whipped Cream: " + whippedCheckBox.isChecked();
         }
         return null;
