@@ -7,6 +7,39 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:id="@+id/text_toppings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/toppings"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkbox_whipped_cream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/whipped_cream_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whipped Cream"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/text_qty"
         android:layout_width="match_parent"
@@ -63,12 +96,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="PRICE"
+        android:text="@string/order_summary"
+        android:textAllCaps="false"
         android:textSize="16dp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/text_total_price"
+        android:id="@+id/order_summary_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/txt_price"

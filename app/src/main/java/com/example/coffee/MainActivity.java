@@ -25,27 +25,39 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void display(int number) {
+    private String createOrderSummary() {
+        String priceMessage = "";
+        priceMessage += "Name: Mohammed Allam";
+        priceMessage += "\n Quantity: " + qty;
+        priceMessage += "\n Total: " + price * qty;
+        return priceMessage;
+    }
+
+    /**
+     * This method displays the given quantity on the screen
+     * @param numberOfCoffees
+     */
+    private void displayQuantity(int numberOfCoffees) {
         TextView txtView = findViewById(R.id.text_total_qty);
-        txtView.setText("" + number);
+        txtView.setText("" + numberOfCoffees);
     }
 
     public void increment(View view) {
         qty = qty + 1;
-        display(qty);
+        displayQuantity(qty);
         displayPrice(qty * price);
     }
 
     public void decrement(View view) {
         if ((qty - 1) >= 1) {
             qty = qty - 1;
-            display(qty);
+            displayQuantity(qty);
             displayPrice(qty * price);
         }
     }
 
     private void displayPrice(int number) {
-        TextView txtView = findViewById(R.id.text_total_price);
+        TextView txtView = findViewById(R.id.order_summary_tv);
         txtView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
