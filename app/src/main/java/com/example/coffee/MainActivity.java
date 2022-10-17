@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView priceTextView;
     public TextView quantityTextView;
     public TextView orderSummaryTextView;
+    public CheckBox whippedCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView = findViewById(R.id.text_total_qty);
         priceTextView = findViewById(R.id.txt_price);
         orderSummaryTextView = findViewById(R.id.order_summary_tv);
+        whippedCheckBox = findViewById(R.id.checkbox_whipped_cream);
     }
 
     /**
