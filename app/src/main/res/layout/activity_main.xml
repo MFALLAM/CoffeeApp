@@ -3,17 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="14dp"
     android:orientation="vertical"
+    android:background="@drawable/coffee_backgroud"
     tools:context=".MainActivity">
-
 
     <TextView
         android:id="@+id/text_toppings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/toppings"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/white"
+        android:text="@string/topping"
         android:textSize="16dp"
         android:textStyle="bold" />
 
@@ -32,13 +34,12 @@
             android:id="@+id/whipped_cream_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
             android:text="Whipped Cream"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
-
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/text_qty"
@@ -58,6 +59,7 @@
             android:id="@+id/btn_decrement"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#BEBEBE"
@@ -74,7 +76,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="0"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -96,8 +98,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
         android:text="@string/order_summary"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="16dp"
         android:textStyle="bold" />
 
@@ -107,8 +111,9 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/txt_price"
         android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
         android:text="$0.00"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16dp"
         android:textStyle="bold" />
 
@@ -118,6 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#BEBEBE"
+        android:layout_marginLeft="16dp"
         android:onClick="submitOrder"
         android:text="Order"
         android:textColor="@color/black"

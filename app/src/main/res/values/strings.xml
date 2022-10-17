@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">Coffee</string>
     <string name="order_summary">Order Summary</string>
-    <string name="toppings">TOPPINGS</string>
+    <string name="app_description">Just Java App</string>
+    <string name="coffee_order">Coffee Order</string>
+    <string name="name">Enter Your Name</string>
+    <string name="topping">Topping</string>
+
+    <string name="whipped_cream">Whipped cream</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">quantity</string>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="zero">0</string>
+    <string name="price">price</string>
+    <string name="order">order</string>
+
+    <string name="validation_increase">You cannot have more than 100 coffee</string>
+    <string name="validation_decrease">You cannot have less than 1 coffee</string>
 </resources>
