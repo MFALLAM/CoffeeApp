@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,12 +60,31 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
+        String customerName = getCustomerName();
+
         // Calculate the price
         int price = calculatePrice();
 
-        // Display the order summary on the screen
-        String message = createOrderSummary(price, hasWhippedCream, hasChocolate);
-        displayMessage(message);
+        if(customerName != null) {
+            // Display the order summary on the screen
+            String message = createOrderSummary(price, hasWhippedCream, hasChocolate, customerName);
+            displayMessage(message);
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    private String getCustomerName() {
+        // Getting customer name from edit text
+        EditText customerName = findViewById(R.id.customer_name_edit_text);
+
+        if(customerName.getText().toString().isEmpty()) {
+            Toast.makeText(MainActivity.this, "Please enter your name!", Toast.LENGTH_LONG).show();
+            return null;
+        }
+        return customerName.getText().toString();
     }
 
     /**
@@ -83,8 +103,9 @@ public class MainActivity extends AppCompatActivity {
      * @param addWhippedCream is whether or not to add whipped cream to the coffee
      * @return text summary
      */
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
-        String priceMessage = "Name: Lyla the Labyrinth";
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String customerName) {
+        String priceMessage = "";
+        priceMessage += "\nName: " + customerName;
         priceMessage += "\nAdd whipped cream? " + addWhippedCream;
         priceMessage += "\nAdd chocolate? " + addChocolate;
         priceMessage += "\nQuantity: " + quantity;
