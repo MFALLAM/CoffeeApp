@@ -3,7 +3,6 @@ package com.example.coffee;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
+        if (quantity == 100) {
+            Toast.makeText(MainActivity.this, "You can't have more than 100 cups!", Toast.LENGTH_LONG).show();
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
@@ -36,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
+        if (quantity == 1) {
+            Toast.makeText(MainActivity.this, "You can't have less than 1 cup!", Toast.LENGTH_LONG).show();
+            return;
+        }
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
