@@ -7,9 +7,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 
 /**
  * This app displays an order form to order coffee.
@@ -73,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @return
+     * This method gets the customer name
+     * @return String customer name
      */
     private String getCustomerName() {
         // Getting customer name from edit text
@@ -132,5 +130,4 @@ public class MainActivity extends AppCompatActivity {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_tv);
         orderSummaryTextView.setText(message);
     }
-
 }
