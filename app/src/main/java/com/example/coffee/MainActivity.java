@@ -19,13 +19,29 @@ import java.util.Map;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 2;
+    // Holds the minimum of qty
+    private int quantity = 0;
+
+    // Holds topping price
+    private double toppingPrice = 0;
+
+    // Holds the price of the cup of coffee
+    final private double pricePerCup = 5;
 
     // Figure out if the user wants whipped cream topping
     CheckBox whippedCreamCheckBox;
 
     // Figure out if the user wants chocolate topping
     CheckBox chocolateCheckBox;
+
+    // Figure out of the user want mocha topping
+    CheckBox mochaCheckbox;
+
+    // Figure out of the user want french vanilla topping
+    CheckBox frenchVanilla;
+
+    // Figure out of the user want double mocha topping
+    CheckBox doubleMocha;
 
     // Holds toppings prices
     Map<String, String> toppingsPrice = new HashMap<>();
@@ -44,11 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * this method finds view by id and initialize it
+     *
      * @return void
      */
     private void initFindViewsById() {
         whippedCreamCheckBox = findViewById(R.id.checkbox_whipped_cream);
         chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
+        mochaCheckbox = findViewById(R.id.Mocha_checkbox);
+        frenchVanilla = findViewById(R.id.french_vanilla_checkbox);
+        doubleMocha = findViewById(R.id.double_mocha_checkbox);
     }
 
     /**
@@ -76,28 +96,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method is called when the order button is clicked.
-     */
-    public void submitOrder(View view) {
-
-        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
-
-        boolean hasChocolate = chocolateCheckBox.isChecked();
-
-        String customerName = getCustomerName();
-
-        // Calculate the price
-        int price = calculatePrice();
-
-        if (customerName != null) {
-            getStatusOfCheckBoxes();
-            // Display the order summary on the screen
-            String message = createOrderSummary(price, hasWhippedCream, hasChocolate, customerName);
-            displayMessage(message);
-        }
-    }
-
-    /**
      *
      */
     private void addingToppingPrices() {
@@ -112,15 +110,35 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method returns topping price
-     * @param topping string
-     * @return String topping price
+     *
+     * @param topping string as a key
+     * @return double topping price
      */
-    private String getToppingPrice(String topping) {
-        return toppingsPrice.get(topping);
+    private double getToppingPrice(String topping) {
+        return Double.parseDouble(toppingsPrice.get(topping));
     }
 
     /**
+     * Calculate topping price
      *
+     * @param price (double) total price of topping(s)
+     * @param flag  (boolean) if true increment the topping price else decrement topping price from topping price
+     * @return (double) total price of added toppings
+     */
+    private double calculateToppingPrice(double price, boolean flag) {
+        
+        if (flag == true) {
+            toppingPrice = price + toppingPrice;
+            Log.v("MainActivity", "Toppings price is ->" + price);
+            Log.v("MainActivity", "Toppings calculated price ->" + toppingPrice);
+            return toppingPrice;
+        } else {
+            toppingPrice = price - toppingPrice;
+            return toppingPrice;
+        }
+    }
+
+    /**
      * @param topping
      * @return
      */
@@ -130,11 +148,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method adds topping to list of toppings
+     *
      * @param topping
      * @return boolean
      */
     private boolean addToppingToList(String topping) {
-        if(findToppingInList(topping) == -1) {
+        if (findToppingInList(topping) == -1) {
             toppingsList.add(topping);
             return true;
         }
@@ -143,11 +162,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method remove topping from the topping list
+     *
      * @param topping String
      * @return boolean
      */
     private boolean removeToppingFromList(String topping) {
-        if(findToppingInList(topping) >= 0) {
+        if (findToppingInList(topping) >= 0) {
             toppingsList.remove(topping);
             return true;
         }
@@ -155,16 +175,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * This method retrieve checkboxes status
      */
     private void getStatusOfCheckBoxes() {
-        if(whippedCreamCheckBox.isChecked()) {
-            Log.v("MainActivity", "Toppings " + whippedCreamCheckBox.getText());
-            Log.v("MainActivity", "Toppings Whipped Cream" + whippedCreamCheckBox.isChecked());
+        if (whippedCreamCheckBox.isChecked()) {
+            addToppingToList(whippedCreamCheckBox.getText().toString());
+            calculateToppingPrice(getToppingPrice(whippedCreamCheckBox.getText().toString()), true);
         }
-        if(whippedCreamCheckBox.isChecked() == false) {
-            Log.v("MainActivity", "Toppings " + whippedCreamCheckBox.getText());
-            Log.v("MainActivity", "Toppings - Whipped Cream " + whippedCreamCheckBox.isChecked());
+        if (whippedCreamCheckBox.isChecked() == false) {
+            removeToppingFromList(whippedCreamCheckBox.getText().toString());
+            calculateToppingPrice(getToppingPrice(whippedCreamCheckBox.getText().toString()), false);
+        }
+        if (chocolateCheckBox.isChecked()) {
+            addToppingToList(chocolateCheckBox.getText().toString());
+            calculateToppingPrice(getToppingPrice(chocolateCheckBox.getText().toString()), true);
+        }
+        if (chocolateCheckBox.isChecked() == false) {
+            removeToppingFromList(chocolateCheckBox.getText().toString());
+            calculateToppingPrice(getToppingPrice(chocolateCheckBox.getText().toString()), false);
+        }
+        if (mochaCheckbox.isChecked()) {
+            addToppingToList(mochaCheckbox.getText().toString());
+            calculateToppingPrice(getToppingPrice(mochaCheckbox.getText().toString()), true);
+        }
+        if (mochaCheckbox.isChecked() == false) {
+            removeToppingFromList(mochaCheckbox.getText().toString());
+            calculateToppingPrice(getToppingPrice(mochaCheckbox.getText().toString()), false);
+        }
+        if (frenchVanilla.isChecked()) {
+            addToppingToList(frenchVanilla.getText().toString());
+            calculateToppingPrice(getToppingPrice(frenchVanilla.getText().toString()), true);
+        }
+        if (frenchVanilla.isChecked() == false) {
+            removeToppingFromList(frenchVanilla.getText().toString());
+            calculateToppingPrice(getToppingPrice(frenchVanilla.getText().toString()), false);
+        }
+        if (doubleMocha.isChecked()) {
+            addToppingToList(doubleMocha.getText().toString());
+            calculateToppingPrice(getToppingPrice(doubleMocha.getText().toString()), true);
+        }
+        if (doubleMocha.isChecked() == false) {
+            removeToppingFromList(doubleMocha.getText().toString());
+            calculateToppingPrice(getToppingPrice(doubleMocha.getText().toString()), false);
         }
     }
 
@@ -185,28 +237,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * This method is called when the order button is clicked.
+     */
+    public void submitOrder(View view) {
+        String customerName = getCustomerName();
+
+        // Calculate the price
+        double price = calculatePrice();
+        Log.v("MainActivity", "SubmitOrder() -> Toppings price -> " + price);
+        if (customerName != null) {
+            getStatusOfCheckBoxes();
+            // Display the order summary on the screen
+            String message = createOrderSummary(price, customerName);
+            displayMessage(message);
+        }
+    }
+
+    /**
      * Calculates the price of the order.
      *
      * @return total price
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private double calculatePrice() {
+        Log.v("MainActivity", "calculatedPrice() -> Toppings price -> " + toppingPrice);
+        Log.v("MainActivity", "calculatedPrice() -> Toppings price last -> " + (quantity * pricePerCup) + toppingPrice);
+        return (quantity * pricePerCup) + toppingPrice;
     }
 
     /**
      * Create summary of the order.
      *
-     * @param price           of the order
-     * @param addWhippedCream is whether or not to add whipped cream to the coffee
-     * @param addChocolate    is whether or not to add chocolate to the coffee
-     * @param customerName    customer name
+     * @param price        of the order
+     * @param customerName customer name
      * @return text summary
      */
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String customerName) {
+    private String createOrderSummary(double price, String customerName) {
         String priceMessage = "";
         priceMessage += "\nName: " + customerName;
-        priceMessage += "\nAdd whipped cream? " + addWhippedCream;
-        priceMessage += "\nAdd chocolate? " + addChocolate;
+        priceMessage += "\nToppings Added ";
+        priceMessage += "\n" + toppingsList.toString();
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + price;
         priceMessage += "\nThank you!";
